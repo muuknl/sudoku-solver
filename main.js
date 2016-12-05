@@ -1,6 +1,5 @@
 const sudoku = require('./sudoku');
 
-const startCell = { x: 0, y: 0 };
 const grid = [
     [0, 6, 0,  0, 0, 1,  0, 9, 4],
     [3, 0, 0,  0, 0, 7,  1, 0, 0],
@@ -44,7 +43,7 @@ function printGrid() {
 sudoku.setGrid(grid);
 printGrid();
 
-const success = sudoku.solveCell(startCell);
+const success = sudoku.solve();
 if (success) {
     console.log("Solution found!");
     printGrid();

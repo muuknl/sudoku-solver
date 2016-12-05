@@ -138,4 +138,13 @@ function boxConflict(cell, num) {
     return false;
 }
 
-module.exports = { solveCell, getGrid, setGrid };
+/**
+ * Convenience method for solving the entire sudoku grid.
+ * @return {boolean} Whether a solution was found.
+ */
+function solve() {
+    const startCell = { x: 0, y: 0 };
+    return solveCell(startCell);
+}
+
+module.exports = { solve, getGrid, setGrid };
