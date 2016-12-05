@@ -81,7 +81,7 @@ function givesConflict(cell, num) {
 
 /**
  * Checks whether a given number is present in a row.
- * @param  {Object}  cell The cell which to check at.
+ * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
  * @return {boolean}      If it is possible to insert that number into the row.
  */
@@ -99,7 +99,7 @@ function rowConflict(cell, num) {
 
 /**
  * Checks whether a given number is present in a column.
- * @param  {Object}  cell The cell which to check at.
+ * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
  * @return {boolean}      If it is possible to insert that number into the column.
  */
@@ -117,7 +117,7 @@ function colConflict(cell, num) {
 
 /**
  * Checks whether a given number is present in a 3x3 box.
- * @param  {Object}  cell The cell which to check at.
+ * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
  * @return {boolean}      If it is possible to insert that number into the 3x3.
  */
