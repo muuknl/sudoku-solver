@@ -1,11 +1,17 @@
 let grid = [];
+let gridSize;
+let boxSize;
 
 /**
  * Set the grid to process.
  * @param newGrid
+ * @param _gridSize
+ * @param _boxSize
  */
-function setGrid(newGrid) {
+function setGrid(newGrid, _gridSize, _boxSize) {
     grid = newGrid;
+    gridSize = _gridSize;
+    boxSize = _boxSize;
 }
 
 /**
@@ -25,12 +31,12 @@ function nextCell(curr) {
     const next = {x: curr.x, y: curr.y};
 
     next.x++;
-    if (next.x > 8) {
+    if (next.x > gridSize - 1) {
         next.y++;
         next.x = 0;
     }
 
-    if (next.y > 8) {
+    if (next.y > gridSize - 1) {
         return null;
     }
 
@@ -51,7 +57,7 @@ function solveCell(cell) {
         return solveCell(nextCell(cell));
     }
 
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= gridSize; i++) {
         if (givesConflict(cell, i)) {
             continue;
         }
@@ -88,7 +94,7 @@ function givesConflict(cell, num) {
 function rowConflict(cell, num) {
     const y = cell.y;
 
-    for (let x = 0; x < 9; x++) {
+    for (let x = 0; x < gridSize; x++) {
         if (grid[y][x] == num) {
             return true;
         }
@@ -106,7 +112,7 @@ function rowConflict(cell, num) {
 function colConflict(cell, num) {
     const x = cell.x;
 
-    for (let y = 0; y < 9; y++) {
+    for (let y = 0; y < gridSize; y++) {
         if (grid[y][x] == num) {
             return true;
         }
@@ -122,11 +128,11 @@ function colConflict(cell, num) {
  * @return {boolean}      If it is possible to insert that number into the 3x3.
  */
 function boxConflict(cell, num) {
-    const boxX = cell.x - (cell.x % 3);
-    const boxY = cell.y - (cell.y % 3);
+    const boxX = cell.x - (cell.x % boxSize);
+    const boxY = cell.y - (cell.y % boxSize);
 
-    for (let x = 0; x < 3; x++) {
-        for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < boxSize; x++) {
+        for (let y = 0; y < boxSize; y++) {
             const finalX = boxX + x;
             const finalY = boxY + y;
 

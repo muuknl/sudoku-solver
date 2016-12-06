@@ -1,6 +1,6 @@
 const sudoku = require('./sudoku');
 
-const grid = [
+const grid9 = [
     [0, 6, 0,  0, 0, 1,  0, 9, 4],
     [3, 0, 0,  0, 0, 7,  1, 0, 0],
     [0, 0, 0,  0, 9, 0,  0, 0, 0],
@@ -14,16 +14,28 @@ const grid = [
     [4, 1, 0,  7, 0, 0,  0, 8, 0]
 ];
 
+const grid4 = [
+    [0, 1, 3, 0],
+    [2, 0, 0, 0],
+    [0, 0, 0, 3],
+    [0, 2, 1, 0]
+];
+
+const gridSize = 4;
+const boxSize = 2;
+const grid = grid4;
+
 function printGrid() {
-    for (let y = 0; y < 9; y++) {
+    for (let y = 0; y < gridSize; y++) {
         let row = "";
-        for (let x = 0; x < 9; x++) {
+        for (let x = 0; x < gridSize; x++) {
             row += ` ${sudoku.getGrid()[y][x]} `;
-            if (x % 3 == 2) {
+
+            if ((x + 1) % boxSize == 0) {
                 row += '|';
             }
         }
-        if (y % 3 == 0) {
+        if (y % boxSize == 0) {
             printHDivider();
         }
         console.log(`|${row}`);
@@ -33,14 +45,14 @@ function printGrid() {
 
     function printHDivider() {
         let divider = '';
-        for (let i = 0; i < 9 * 3 + 4; i++) {
+        for (let i = 0; i < gridSize * 3 + boxSize + 1; i++) {
             divider += '-';
         }
         console.log(divider);
     }
 }
 
-sudoku.setGrid(grid);
+sudoku.setGrid(grid, gridSize, boxSize);
 printGrid();
 
 const success = sudoku.solve();
