@@ -77,7 +77,7 @@ function solveCell(cell) {
  * cell, taking into account the rules described by the sudoku.
  * @param  {Object} cell The cell to check at.
  * @param  {number} num  The number to check for.
- * @return {boolean}      If it is possible to insert that number into that cell.
+ * @return {boolean}     True if there is a conflict.
  */
 function givesConflict(cell, num) {
     return rowConflict(cell, num) ||
@@ -89,7 +89,7 @@ function givesConflict(cell, num) {
  * Checks whether a given number is present in a row.
  * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
- * @return {boolean}      If it is possible to insert that number into the row.
+ * @return {boolean}     True if there is a conflict.
  */
 function rowConflict(cell, num) {
     const y = cell.y;
@@ -107,7 +107,7 @@ function rowConflict(cell, num) {
  * Checks whether a given number is present in a column.
  * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
- * @return {boolean}      If it is possible to insert that number into the column.
+ * @return {boolean}     True if there is a conflict.
  */
 function colConflict(cell, num) {
     const x = cell.x;
@@ -125,7 +125,7 @@ function colConflict(cell, num) {
  * Checks whether a given number is present in a 3x3 box.
  * @param  {Object} cell The cell which to check at.
  * @param  {number} num  The number to chekc for.
- * @return {boolean}      If it is possible to insert that number into the 3x3.
+ * @return {boolean}     True if there is a conflict.
  */
 function boxConflict(cell, num) {
     const boxX = cell.x - (cell.x % boxSize);
